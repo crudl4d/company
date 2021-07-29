@@ -22,7 +22,7 @@ public class Main {
         JList employeeList = new JList(employeeListModel);
         employeeList.setBounds(100,100,200,200);
 
-        JButton addButton = new AddEmployeeButton(mainWindow, employeeListModel);
+        JButton addButton = new AddEmployeeButton(mainWindow, employeeListModel, statement);
         JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList);
         JButton searchButton = new SearchButton(mainWindow, employeeListModel);
 
