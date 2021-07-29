@@ -3,9 +3,10 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 public class SearchButton extends JButton implements ActionListener {
-    JButton button = new JButton("Add book");
+    JButton button = new JButton("Search for employee");
     JLabel output = new JLabel("Send a query");
     JTextField input = new JTextField("Search");
     DefaultListModel<String> listModel;
@@ -22,7 +23,13 @@ public class SearchButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        var book = new Book("name", "author");
-        listModel.addElement(book.getName() + ", author: " + book.getAuthor());
+        for(int i=0; i<listModel.size(); i++){
+            if(listModel.getElementAt(i).toLowerCase().contains(input.getText().toLowerCase())){
+                output.setText(listModel.getElementAt(i));
+                break;
+            }
+            else
+                output.setText("Employee not found");
+        }
     }
 }

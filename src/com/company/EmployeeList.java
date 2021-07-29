@@ -4,9 +4,9 @@ import javax.swing.*;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 
-public class BookList extends DefaultListModel implements ListDataListener {
+public class EmployeeList extends DefaultListModel implements ListDataListener {
     DefaultListModel<String> listModel = new DefaultListModel<>();
-    public BookList(){
+    public EmployeeList(){
         listModel.addListDataListener(this);
     }
 
