@@ -25,7 +25,5 @@ public class AddEmployeeButton extends JButton implements ActionListener {
         //placeholder
         //TODO add popup to create an employee
         AddEmployeePopup add = new AddEmployeePopup(statement);
-        var employee = new Employee("Adam", "Null", 3500);
-        listModel.addElement(employee.getFirst_name() + " " + employee.getLast_name());
     }
 }

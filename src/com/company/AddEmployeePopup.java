@@ -16,6 +16,7 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
     JTextField lastName = new JTextField("last name");
     JTextField email = new JTextField("email");
     JTextField hire_date = new JTextField(new Date(System.currentTimeMillis()).toString());
+    JComboBox<String> job_titles = new JComboBox<>();
     Statement statement;
     public AddEmployeePopup(Statement statement) {
         this.statement = statement;
@@ -25,20 +26,26 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
         addEmployee.add(email);
         addEmployee.add(hire_date);
         addEmployee.add(title);
+        addEmployee.add(job_titles);
         addEmployee.setLayout(null);
         addEmployee.setBounds(100, 100, 300, 300);
         addEmployee.setVisible(true);
 
         JButton ok = new JButton("OK");
         addEmployee.add(ok);
-        ok.setBounds(50,150,100,50);
+        ok.setBounds(50,175,100,50);
         ok.addActionListener(this);
+
+        for(JobTitles jt: JobTitles.values()){
+            job_titles.addItem(jt.toString());
+        }
 
         firstName.setBounds(50, 50, 150, 25);
         lastName.setBounds(50, 75, 150, 25);
         email.setBounds(50, 100, 150, 25);
         hire_date.setBounds(50, 125, 150, 25);
         title.setBounds(40,25,175,25);
+        job_titles.setBounds(50, 150, 150, 25);
     }
 
     @Override
@@ -49,7 +56,7 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
             resultSet.next();
             statement.executeQuery("INSERT INTO EMPLOYEES(employee_id, first_name, last_name, email, hire_date, job_id) " +
                     "VALUES(" + resultSet.getInt(1) + ", '" + firstName.getText() + "', '"+ lastName.getText() +"', '" +
-                    email.getText() + "', '" + hire_date.getText() + "', 'AD_PRES')");
+                    email.getText() + "', '" + hire_date.getText() + "', '" + job_titles.getSelectedItem() + "')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
