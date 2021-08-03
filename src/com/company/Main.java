@@ -10,21 +10,21 @@ public class Main {
 
         Class.forName("oracle.jdbc.OracleDriver");
         Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@155.158.112.45:1521:oltpstud", "msbd7", args[0]);
-
-        //test statement
         Statement statement = connection.createStatement();
 
         JFrame mainWindow = new JFrame();
 
-        DefaultListModel employeeListModel = new EmployeeList(statement).getListModel();
-        JList employeeList = new JList(employeeListModel);
-        employeeList.setBounds(100,100,200,200);
+        EmployeeList employeeListModel = new EmployeeList(statement);
+        JList<Employee> employeeList = new JList<Employee>(employeeListModel.getListModel());
+        JScrollPane pane = new JScrollPane();
+        pane.setBounds(100,100,200,200);
+        pane.setViewportView(employeeList);
+        mainWindow.add(pane);
 
         JButton addButton = new AddEmployeeButton(mainWindow, employeeListModel, statement);
-        JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList);
+        JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
         JButton searchButton = new SearchButton(mainWindow, employeeListModel);
 
-        mainWindow.add(employeeList);
         mainWindow.setLayout(null);
         mainWindow.setSize(800, 600);
         mainWindow.setVisible(true);
