@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -13,7 +15,7 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
     JTextField firstName = new JTextField("first name");
     JTextField lastName = new JTextField("last name");
     JTextField email = new JTextField("email");
-    JTextField hire_date = new JTextField("hire_date");
+    JTextField hire_date = new JTextField(new Date(System.currentTimeMillis()).toString());
     Statement statement;
     public AddEmployeePopup(Statement statement) {
         this.statement = statement;
@@ -43,9 +45,11 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         addEmployee.dispatchEvent(new WindowEvent(addEmployee, WindowEvent.WINDOW_CLOSING));
         try {
+            ResultSet resultSet = statement.executeQuery("SELECT employees_seq.nextval FROM dual");
+            resultSet.next();
             statement.executeQuery("INSERT INTO EMPLOYEES(employee_id, first_name, last_name, email, hire_date, job_id) " +
-                    "VALUES(9999, '" + firstName.getText() + "', '"+ lastName.getText() +"', '" +
-                    email.getText() + "', '" + hire_date.getText() + "', 'SALESMAN')");
+                    "VALUES(" + resultSet.getInt(1) + ", '" + firstName.getText() + "', '"+ lastName.getText() +"', '" +
+                    email.getText() + "', '" + hire_date.getText() + "', 'AD_PRES')");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
