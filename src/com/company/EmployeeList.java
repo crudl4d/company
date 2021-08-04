@@ -1,15 +1,13 @@
 package com.company;
 
 import javax.swing.*;
-import javax.swing.event.ListDataEvent;
-import javax.swing.event.ListDataListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeList extends DefaultListModel<Employee> implements ListDataListener {
+public class EmployeeList extends DefaultListModel<Employee> {
     private final
     DefaultListModel<Employee> listModel = new DefaultListModel<>();
     static List<Employee> employeeRepository =  new ArrayList<Employee>();
@@ -22,8 +20,7 @@ public class EmployeeList extends DefaultListModel<Employee> implements ListData
                     resultSet.getDate(6), resultSet.getString(7), resultSet.getInt(8));
             listModel.addElement(emp);
             employeeRepository.add(emp);
-        }
-        listModel.addListDataListener(this);
+        };
     }
     public DefaultListModel<Employee> getListModel(){return this.listModel;}
 
@@ -31,18 +28,4 @@ public class EmployeeList extends DefaultListModel<Employee> implements ListData
         return employeeRepository;
     }
 
-    @Override
-    public void intervalAdded(ListDataEvent e) {
-
-    }
-
-    @Override
-    public void intervalRemoved(ListDataEvent e) {
-
-    }
-
-    @Override
-    public void contentsChanged(ListDataEvent e) {
-
-    }
 }
