@@ -1,4 +1,8 @@
-package com.company;
+package com.company.windows;
+
+import com.company.Employee;
+import com.company.JobTitles;
+import com.company.lists.EmployeeListModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +15,7 @@ import java.sql.Statement;
 
 public class AddEmployeePopup extends JFrame implements ActionListener {
     private final
-    EmployeeList listModel;
+    EmployeeListModel listModel;
     JFrame addEmployee = new JFrame("Add employee");
     JLabel title = new JLabel("Provide employee information");
     JTextField firstName = new JTextField("first name");
@@ -21,7 +25,7 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
     JComboBox<String> job_titles = new JComboBox<>();
     Statement statement;
 
-    public AddEmployeePopup(Statement statement, EmployeeList listModel) {
+    public AddEmployeePopup(Statement statement, EmployeeListModel listModel) {
         this.statement = statement;
         this.listModel = listModel;
         setup();

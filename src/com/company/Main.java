@@ -1,8 +1,16 @@
 package com.company;
 
+import com.company.buttons.AddEmployeeButton;
+import com.company.buttons.DeleteEmployeeButton;
+import com.company.buttons.SearchButton;
+import com.company.lists.EmployeeList;
+import com.company.lists.EmployeeListModel;
+
 import javax.swing.*;
-import java.sql.*;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main {
 
@@ -14,8 +22,8 @@ public class Main {
 
         JFrame mainWindow = new JFrame();
 
-        EmployeeList employeeListModel = new EmployeeList(statement);
-        JList<Employee> employeeList = new JList<Employee>(employeeListModel.getListModel());
+        EmployeeListModel employeeListModel = new EmployeeListModel(statement);
+        JList<Employee> employeeList = new EmployeeList(employeeListModel).getJList();
         JScrollPane pane = new JScrollPane();
         pane.setBounds(250,25,200,200);
         pane.setViewportView(employeeList);

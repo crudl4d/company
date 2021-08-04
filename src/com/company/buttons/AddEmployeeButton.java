@@ -1,4 +1,7 @@
-package com.company;
+package com.company.buttons;
+
+import com.company.windows.AddEmployeePopup;
+import com.company.lists.EmployeeListModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -7,10 +10,10 @@ import java.sql.Statement;
 
 public class AddEmployeeButton extends JButton implements ActionListener {
     JButton button = new JButton("Add employee");
-    EmployeeList listModel;
+    EmployeeListModel listModel;
     Statement statement;
     JFrame frame;
-    public AddEmployeeButton(JFrame frame, EmployeeList listModel, Statement statement){
+    public AddEmployeeButton(JFrame frame, EmployeeListModel listModel, Statement statement){
         this.frame = frame;
         this.listModel = listModel;
         this.statement = statement;

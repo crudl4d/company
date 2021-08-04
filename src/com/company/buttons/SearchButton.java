@@ -1,16 +1,17 @@
-package com.company;
+package com.company.buttons;
+
+import com.company.lists.EmployeeListModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Locale;
 
 public class SearchButton extends JButton implements ActionListener {
     JButton button = new JButton("Search for employee");
     JLabel output = new JLabel("Send a query");
     JTextField input = new JTextField("Search");
-    EmployeeList listModel;
-    public SearchButton(JFrame frame, EmployeeList listModel){
+    EmployeeListModel listModel;
+    public SearchButton(JFrame frame, EmployeeListModel listModel){
         this.listModel = listModel;
         button.setBounds(500,50,200,50);
         output.setBounds(500,150,200,50);

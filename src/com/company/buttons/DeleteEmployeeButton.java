@@ -1,4 +1,7 @@
-package com.company;
+package com.company.buttons;
+
+import com.company.Employee;
+import com.company.lists.EmployeeListModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -8,10 +11,10 @@ import java.sql.Statement;
 
 public class DeleteEmployeeButton extends JButton implements ActionListener {
     JButton button = new JButton("Delete selected employees");
-    EmployeeList listModel;
+    EmployeeListModel listModel;
     JList<Employee> bookList;
     Statement statement;
-    public DeleteEmployeeButton(JFrame frame, EmployeeList listModel, JList<Employee> bookList, Statement statement){
+    public DeleteEmployeeButton(JFrame frame, EmployeeListModel listModel, JList<Employee> bookList, Statement statement){
         this.listModel = listModel;
         this.bookList = bookList;
         this.statement = statement;
