@@ -17,7 +17,7 @@ public class Main {
         EmployeeList employeeListModel = new EmployeeList(statement);
         JList<Employee> employeeList = new JList<Employee>(employeeListModel.getListModel());
         JScrollPane pane = new JScrollPane();
-        pane.setBounds(100,100,200,200);
+        pane.setBounds(250,25,200,200);
         pane.setViewportView(employeeList);
         mainWindow.add(pane);
 
@@ -25,6 +25,7 @@ public class Main {
         JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
         JButton searchButton = new SearchButton(mainWindow, employeeListModel);
 
+        mainWindow.setTitle("Employee management");
         mainWindow.setLayout(null);
         mainWindow.setSize(800, 600);
         mainWindow.setVisible(true);

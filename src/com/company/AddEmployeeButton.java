@@ -14,7 +14,7 @@ public class AddEmployeeButton extends JButton implements ActionListener {
         this.frame = frame;
         this.listModel = listModel;
         this.statement = statement;
-        button.setBounds(50,50,100,50);
+        button.setBounds(25,50,200,50);
         button.addActionListener(this);
         frame.add(button);
     }

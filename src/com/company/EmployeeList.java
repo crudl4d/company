@@ -10,12 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeList extends DefaultListModel<Employee> implements ListDataListener {
-    private DefaultListModel<Employee> listModel = new DefaultListModel<>();
-    private Statement statement;
-    private static List<Employee> employeeRepository =  new ArrayList<Employee>();
+    private final
+    DefaultListModel<Employee> listModel = new DefaultListModel<>();
+    static List<Employee> employeeRepository =  new ArrayList<Employee>();
 
     public EmployeeList(Statement statement) throws SQLException {
-        this.statement = statement;
         ResultSet resultSet = statement.executeQuery("SELECT * FROM EMPLOYEES");
         while(resultSet.next()){
             Employee emp = new Employee(resultSet.getInt(1), resultSet.getString(2),
