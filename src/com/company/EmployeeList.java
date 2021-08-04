@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeList extends DefaultListModel<Employee> implements ListDataListener {
-    DefaultListModel<Employee> listModel = new DefaultListModel<>();
-    Statement statement;
-    List<Employee> employeeRepository =  new ArrayList<Employee>();
+    private DefaultListModel<Employee> listModel = new DefaultListModel<>();
+    private Statement statement;
+    private static List<Employee> employeeRepository =  new ArrayList<Employee>();
 
     public EmployeeList(Statement statement) throws SQLException {
         this.statement = statement;

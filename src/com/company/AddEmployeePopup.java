@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AddEmployeePopup extends JFrame implements ActionListener {
+    private final
     EmployeeList listModel;
     JFrame addEmployee = new JFrame("Add employee");
     JLabel title = new JLabel("Provide employee information");
@@ -61,11 +62,16 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
             ResultSet resultSet = statement.executeQuery("SELECT employees_seq.nextval FROM dual");
             resultSet.next();
             int id = resultSet.getInt(1);
+
             statement.executeQuery("INSERT INTO EMPLOYEES(employee_id, first_name, last_name, email, hire_date, job_id) " +
                     "VALUES(" + id + ", '" + firstName.getText() + "', '"+ lastName.getText() +"', '" +
                     email.getText() + "', '" + hire_date.getText() + "', '" + job_titles.getSelectedItem() + "')");
-            listModel.getListModel().addElement(new Employee(id, firstName.getName(), lastName.getName(), email.getText(),
-                    Date.valueOf(hire_date.getText()), job_titles.getSelectedItem().toString(), 1000));
+
+            Employee newEmployee = new Employee(id, firstName.getText(), lastName.getText(), email.getText(),
+                    Date.valueOf(hire_date.getText()), job_titles.getSelectedItem().toString(), 1000);
+
+            listModel.getListModel().addElement(listModel.getEmployeeRepository().get(listModel.getEmployeeRepository().size() - 1));
+            listModel.getEmployeeRepository().add(newEmployee);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
