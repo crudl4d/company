@@ -33,6 +33,9 @@ public class Main {
         JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
         JButton searchButton = new SearchButton(mainWindow, employeeListModel);
 
+        JMenuBar menuBar = new Menu().getJMenuBar();
+        mainWindow.setJMenuBar(menuBar);
+
         mainWindow.setTitle("Employee management");
         mainWindow.setLayout(null);
         mainWindow.setSize(800, 600);
