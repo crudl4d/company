@@ -14,16 +14,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AddEmployeePopup extends JFrame implements ActionListener {
-    private final
-    EmployeeListModel listModel;
-    JFrame addEmployee = new JFrame("Add employee");
-    JLabel title = new JLabel("Provide employee information");
-    JTextField firstName = new JTextField("first name");
-    JTextField lastName = new JTextField("last name");
-    JTextField email = new JTextField("email");
-    JTextField hire_date = new JTextField(new Date(System.currentTimeMillis()).toString());
-    JComboBox<String> job_titles = new JComboBox<>();
-    Statement statement;
+    private final EmployeeListModel listModel;
+    private final JFrame addEmployee = new JFrame("Add employee");
+    private final JLabel title = new JLabel("Provide employee information");
+    private final JTextField firstName = new JTextField("first name");
+    private final JTextField lastName = new JTextField("last name");
+    private final JTextField email = new JTextField("email");
+    private final JTextField hire_date = new JTextField(new Date(System.currentTimeMillis()).toString());
+    private final JComboBox<String> job_titles = new JComboBox<>();
+    private final Statement statement;
 
     public AddEmployeePopup(Statement statement, EmployeeListModel listModel) {
         this.statement = statement;
@@ -65,7 +64,7 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
         try {
             ResultSet resultSet = statement.executeQuery("SELECT employees_seq.nextval FROM dual");
             resultSet.next();
-            int id = resultSet.getInt(1);
+            var id = resultSet.getInt(1);
 
             statement.executeQuery("INSERT INTO EMPLOYEES(employee_id, first_name, last_name, email, hire_date, job_id) " +
                     "VALUES(" + id + ", '" + firstName.getText() + "', '"+ lastName.getText() +"', '" +
@@ -74,8 +73,8 @@ public class AddEmployeePopup extends JFrame implements ActionListener {
             Employee newEmployee = new Employee(id, firstName.getText(), lastName.getText(), email.getText(),
                     Date.valueOf(hire_date.getText()), job_titles.getSelectedItem().toString(), 1000);
 
-            listModel.getListModel().addElement(listModel.getEmployeeRepository().get(listModel.getEmployeeRepository().size() - 1));
             listModel.getEmployeeRepository().add(newEmployee);
+            listModel.getListModel().addElement(listModel.getEmployeeRepository().get(listModel.getEmployeeRepository().size() - 1));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

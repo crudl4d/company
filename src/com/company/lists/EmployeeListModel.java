@@ -10,9 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeListModel extends DefaultListModel<Employee> {
-    private final
-    DefaultListModel<Employee> listModel = new DefaultListModel<>();
-    static List<Employee> employeeRepository =  new ArrayList<Employee>();
+    private final DefaultListModel<Employee> listModel = new DefaultListModel<>();
+    private final static List<Employee> employeeRepository =  new ArrayList<Employee>();
 
     public EmployeeListModel(Statement statement) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM EMPLOYEES");

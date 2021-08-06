@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class EmployeeList extends JList<Employee> implements MouseListener {
-    JList<Employee> employeeList;
+    private final JList<Employee> employeeList;
 
     public EmployeeList(EmployeeListModel listModel){
         employeeList = new JList<>(listModel.getListModel());

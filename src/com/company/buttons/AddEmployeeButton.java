@@ -9,14 +9,13 @@ import java.awt.event.ActionListener;
 import java.sql.Statement;
 
 public class AddEmployeeButton extends JButton implements ActionListener {
-    JButton button = new JButton("Add employee");
-    EmployeeListModel listModel;
-    Statement statement;
-    JFrame frame;
+    private final EmployeeListModel listModel;
+    private final Statement statement;
+
     public AddEmployeeButton(JFrame frame, EmployeeListModel listModel, Statement statement){
-        this.frame = frame;
         this.listModel = listModel;
         this.statement = statement;
+        JButton button = new JButton("Add employee");
         button.setBounds(25,50,200,50);
         button.addActionListener(this);
         frame.add(button);

@@ -7,12 +7,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SearchButton extends JButton implements ActionListener {
-    JButton button = new JButton("Search for employee");
-    JLabel output = new JLabel("Send a query");
-    JTextField input = new JTextField("Search");
-    EmployeeListModel listModel;
+    private final JLabel output = new JLabel("Send a query");
+    private final JTextField input = new JTextField("Search");
+    private final EmployeeListModel listModel;
     public SearchButton(JFrame frame, EmployeeListModel listModel){
         this.listModel = listModel;
+        JButton button = new JButton("Search for employee");
         button.setBounds(500,50,200,50);
         output.setBounds(500,150,200,50);
         input.setBounds(500,100,200,50);
