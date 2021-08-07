@@ -23,17 +23,17 @@ public class Main {
         Statement statement = connection.createStatement();
 
         configureMainWindow(
-                addPane(
-                        addButtons(statement)));
+                        addPane(
+                            addButtonsAndLists(statement)));
     }
 
-    private static JList<Employee> addButtons(Statement statement) throws SQLException {
+    private static JList<Employee> addButtonsAndLists(Statement statement) throws SQLException {
         EmployeeListModel employeeListModel = new EmployeeListModel(statement);
-        JList<Employee> employeeList = new EmployeeList(employeeListModel).getJList();
+        JList<Employee> employeeList = new EmployeeList(employeeListModel, statement).getJList();
         JButton addButton = new AddEmployeeButton(mainWindow, employeeListModel, statement);
         JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
         JButton searchButton = new SearchButton(mainWindow, employeeListModel);
-        return  employeeList;
+        return employeeList;
     }
 
     private static JScrollPane addPane(JList<Employee> employeeList){
@@ -44,8 +44,8 @@ public class Main {
     }
 
     private static void configureMainWindow(JScrollPane pane){
-        mainWindow.add(pane);
         JMenuBar menuBar = new Menu().getJMenuBar();
+        mainWindow.add(pane);
         mainWindow.setJMenuBar(menuBar);
         mainWindow.setTitle("Employee management");
         mainWindow.setLayout(null);
