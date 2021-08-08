@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.buttons.AddEmployeeButton;
 import com.company.buttons.DeleteEmployeeButton;
+import com.company.buttons.EditEmployeeButton;
 import com.company.buttons.SearchButton;
 import com.company.lists.EmployeeList;
 import com.company.lists.EmployeeListModel;
@@ -30,15 +31,16 @@ public class Main {
     private static JList<Employee> addButtonsAndLists(Statement statement) throws SQLException {
         EmployeeListModel employeeListModel = new EmployeeListModel(statement);
         JList<Employee> employeeList = new EmployeeList(employeeListModel, statement).getJList();
-        JButton addButton = new AddEmployeeButton(mainWindow, employeeListModel, statement);
-        JButton deleteButton = new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
-        JButton searchButton = new SearchButton(mainWindow, employeeListModel);
+        new EditEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
+        new AddEmployeeButton(mainWindow, employeeListModel, statement);
+        new DeleteEmployeeButton(mainWindow, employeeListModel, employeeList, statement);
+        new SearchButton(mainWindow, employeeListModel);
         return employeeList;
     }
 
     private static JScrollPane addPane(JList<Employee> employeeList){
         JScrollPane pane = new JScrollPane();
-        pane.setBounds(250,25,200,200);
+        pane.setBounds(250,50,200,200);
         pane.setViewportView(employeeList);
         return pane;
     }

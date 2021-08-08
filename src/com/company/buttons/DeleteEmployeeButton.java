@@ -18,7 +18,7 @@ public class DeleteEmployeeButton extends JButton implements ActionListener {
         this.bookList = bookList;
         this.statement = statement;
         JButton button = new JButton("Delete selected employees");
-        button.setBounds(25,125,200,50);
+        button.setBounds(25,200,200,50);
         button.addActionListener(this);
         frame.add(button);
     }

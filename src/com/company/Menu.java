@@ -8,7 +8,7 @@ public class Menu extends JMenuBar{
         JMenu menu = new JMenu("File");
         JMenuItem save = new JMenuItem("Save");
         JMenuItem undo = new JMenuItem("Undo changes");
-        JMenuItem exit = new JMenuItem("Exit");
+        JMenuItem exit = new JMenuItem("Exit");//TODO make classes for each menuItem
         menu.add(save);
         menu.add(undo);
         menu.add(exit);

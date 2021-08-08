@@ -6,11 +6,7 @@ import com.company.windows.EmployeeDetails;
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
-import java.util.List;
 
 public class EmployeeList extends JList<Employee> implements MouseListener {
     private final JList<Employee> employeeList;
