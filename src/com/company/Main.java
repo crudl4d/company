@@ -18,9 +18,7 @@ public class Main {
     private final static JFrame mainWindow = new JFrame();
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-
-        Class.forName("oracle.jdbc.OracleDriver");
-        Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@155.158.112.45:1521:oltpstud", "msbd7", args[0]);
+        Connection connection = ConnectionToDB.getConnection(args[0]);
         Statement statement = connection.createStatement();
 
         configureMainWindow(
