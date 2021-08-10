@@ -1,6 +1,7 @@
 package com.company.windows;
 
 import javax.swing.*;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ public class EditEmployeePopup {
             new JTextField("Manager ID: "),
             new JTextField("Department's ID: ")
     );
-    public EditEmployeePopup(DefaultListModel listModel, Statement statement, int index){
+    public EditEmployeePopup(DefaultListModel listModel, Statement statement, int index) throws SQLException {
         for(int i = 0; i < labels.size(); i++){
             labels.get(i).setBounds(10,i * 30,100,20);
             textFields.get(i).setBounds(110, i * 30, 150, 20);
@@ -41,5 +42,13 @@ public class EditEmployeePopup {
         editEmployee.setLayout(null);
         editEmployee.setBounds(100,100,300,350);
         editEmployee.setVisible(true);
-    }
+        var values = "";
+        for(int i = 0; i < labels.size(); i++){
+            values = values.concat(textFields.get(i).getText());
+        }
+        statement.executeQuery("UPDATE employees SET " +
+                "first_name = " + textFields.get(1) +
+                ", last_name = " + textFields.get(2) +
+                "WHERE employee_id = " + textFields.get(0));
+    }//TODO add ok/cancel, possibly merge edit/show popups
 }
