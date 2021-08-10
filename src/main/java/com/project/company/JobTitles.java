@@ -1,4 +1,4 @@
-package com.company;
+package com.project.company;
 
 public enum JobTitles {
     AD_PRES,

@@ -1,7 +1,7 @@
-package com.company.lists;
+package com.project.company.lists;
 
-import com.company.Employee;
-import com.company.windows.EmployeeDetails;
+import com.project.company.Employee;
+import com.project.company.windows.EmployeeDetails;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

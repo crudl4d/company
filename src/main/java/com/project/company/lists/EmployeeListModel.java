@@ -1,6 +1,6 @@
-package com.company.lists;
+package com.project.company.lists;
 
-import com.company.Employee;
+import com.project.company.Employee;
 
 import javax.swing.*;
 import java.sql.ResultSet;

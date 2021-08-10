@@ -1,6 +1,6 @@
-package com.company.windows;
+package com.project.company.windows;
 
-import com.company.lists.EmployeeListModel;
+import com.project.company.lists.EmployeeListModel;
 
 import javax.swing.*;
 import java.sql.ResultSet;

@@ -1,18 +1,19 @@
-package com.company;
+package com.project.company;
 
-import com.company.buttons.AddEmployeeButton;
-import com.company.buttons.DeleteEmployeeButton;
-import com.company.buttons.EditEmployeeButton;
-import com.company.buttons.SearchButton;
-import com.company.lists.EmployeeList;
-import com.company.lists.EmployeeListModel;
+import com.project.company.buttons.AddEmployeeButton;
+import com.project.company.buttons.DeleteEmployeeButton;
+import com.project.company.buttons.EditEmployeeButton;
+import com.project.company.buttons.SearchButton;
+import com.project.company.lists.EmployeeList;
+import com.project.company.lists.EmployeeListModel;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.swing.*;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@SpringBootApplication
 public class Main {
 
     private final static JFrame mainWindow = new JFrame();

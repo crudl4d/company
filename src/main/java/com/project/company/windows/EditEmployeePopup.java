@@ -1,4 +1,4 @@
-package com.company.windows;
+package com.project.company.windows;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

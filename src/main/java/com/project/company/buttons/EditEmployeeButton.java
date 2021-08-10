@@ -1,8 +1,8 @@
-package com.company.buttons;
+package com.project.company.buttons;
 
-import com.company.Employee;
-import com.company.lists.EmployeeListModel;
-import com.company.windows.EditEmployeePopup;
+import com.project.company.Employee;
+import com.project.company.lists.EmployeeListModel;
+import com.project.company.windows.EditEmployeePopup;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,7 +1,6 @@
-package com.company.buttons;
+package com.project.company.buttons;
 
-import com.company.lists.EmployeeListModel;
-
+import com.project.company.lists.EmployeeListModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
