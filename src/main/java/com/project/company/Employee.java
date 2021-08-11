@@ -1,7 +1,12 @@
 package com.project.company;
 
+import lombok.Data;
+
+import javax.annotation.Resource;
 import java.util.Date;
 
+@Resource
+@Data
 public class Employee {
     private int employee_id;
     private String first_name;
@@ -29,22 +34,6 @@ public class Employee {
 
     public Employee(int employee_id) {
         this.employee_id = employee_id;
-    }
-
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public int getEmployee_id() {
-        return employee_id;
-    }
-
-    public int getSalary() {
-        return salary;
     }
 
     @Override

@@ -37,15 +37,15 @@ public class EditEmployeePopup implements ActionListener {
     );
     JButton ok = new JButton("OK");
     JButton cancel = new JButton("Cancel");
-    public EditEmployeePopup(DefaultListModel listModel, Statement statement, int index) throws SQLException {
+    public EditEmployeePopup(Statement statement, int index) {
         this.statement = statement;
-        setup(listModel, statement, index);
+        setup(statement, index);
         ok.setBounds(10,300,100,30);
         ok.addActionListener(this);
         editEmployee.add(ok);
     }//TODO add ok/cancel, possibly merge edit/show popups
 
-    private void setup(DefaultListModel listModel, Statement statement, int index) throws SQLException {
+    private void setup(Statement statement, int index) {
         for(int i = 0; i < labels.size(); i++){
             labels.get(i).setBounds(10,i * 30,100,20);
             textFields.get(i).setBounds(110, i * 30, 150, 20);

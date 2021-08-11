@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class DeleteEmployeeButton extends JButton implements ActionListener {
     private final EmployeeListModel listModel;
     private final JList<Employee> bookList;
-    private final Statement statement;
+    private final transient Statement statement;
     public DeleteEmployeeButton(JFrame frame, EmployeeListModel listModel, JList<Employee> bookList, Statement statement){
         this.listModel = listModel;
         this.bookList = bookList;

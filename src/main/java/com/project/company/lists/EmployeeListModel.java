@@ -1,6 +1,8 @@
 package com.project.company.lists;
 
 import com.project.company.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -9,9 +11,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class EmployeeListModel extends DefaultListModel<Employee> {
     private final DefaultListModel<Employee> listModel = new DefaultListModel<>();
-    private final static List<Employee> employeeRepository =  new ArrayList<Employee>();
+    private static final List<Employee> employeeRepository = new ArrayList<>();
 
     public EmployeeListModel(Statement statement) throws SQLException {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM EMPLOYEES");
@@ -21,7 +24,7 @@ public class EmployeeListModel extends DefaultListModel<Employee> {
                     resultSet.getDate(6), resultSet.getString(7), resultSet.getInt(8));
             listModel.addElement(emp);
             employeeRepository.add(emp);
-        };
+        }
     }
     public DefaultListModel<Employee> getListModel(){return this.listModel;}
 

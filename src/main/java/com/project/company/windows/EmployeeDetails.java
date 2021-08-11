@@ -1,6 +1,10 @@
 package com.project.company.windows;
 
+import com.project.company.Employee;
+import com.project.company.lists.EmployeeList;
 import com.project.company.lists.EmployeeListModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -10,9 +14,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class EmployeeDetails {
+@Component
+public class EmployeeDetails extends JFrame {
+    private final JList<Employee> employeeList;
+    private final EmployeeListModel listModel;
+    private final transient Statement statement;
     final JFrame empDetails = new JFrame("Employee details");
-    final List<JLabel> details = Arrays.asList(
+    private final List<JLabel> details = Arrays.asList(
             new JLabel("ID: "),
             new JLabel("First name: "),
             new JLabel("Last name: "),
@@ -24,8 +32,17 @@ public class EmployeeDetails {
             new JLabel("Manager ID: "),
             new JLabel("Department's ID: ")
     );
-    public EmployeeDetails(EmployeeListModel listModel, Statement statement, int index) {
-        var empId = listModel.getEmployeeRepository().get(index).getEmployee_id();
+    public EmployeeDetails(EmployeeListModel listModel, EmployeeList employeeList, Statement statement) {
+        this.listModel = listModel;
+        this.employeeList = employeeList.getJList();
+        this.statement = statement;
+        setup();
+
+    }
+    private void setup(){
+        if(employeeList.getSelectedIndex()==-1)
+            return;
+        var empId = listModel.getEmployeeRepository().get(employeeList.getSelectedIndex()).getEmployee_id();
         try {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employees WHERE employee_id = " + empId);
             resultSet.next();

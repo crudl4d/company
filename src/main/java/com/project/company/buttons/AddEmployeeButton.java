@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 public class AddEmployeeButton extends JButton implements ActionListener {
     private final EmployeeListModel listModel;
-    private final Statement statement;
+    private final transient Statement statement;
 
     public AddEmployeeButton(JFrame frame, EmployeeListModel listModel, Statement statement){
         this.listModel = listModel;
@@ -23,6 +23,6 @@ public class AddEmployeeButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        AddEmployeePopup add = new AddEmployeePopup(statement, listModel);
+        new AddEmployeePopup(statement, listModel);
     }
 }

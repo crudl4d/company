@@ -1,6 +1,7 @@
 package com.project.company.buttons;
 
 import com.project.company.lists.EmployeeListModel;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +19,8 @@ public class SearchButton extends JButton implements ActionListener {
         frame.add(input);
         frame.add(output);
         frame.add(button);
-        input.setHorizontalAlignment(JTextField.CENTER);
-        output.setHorizontalAlignment(JTextField.CENTER);
+        input.setHorizontalAlignment(CENTER);
+        output.setHorizontalAlignment(CENTER);
         button.addActionListener(this);
         input.addActionListener(this);
     }

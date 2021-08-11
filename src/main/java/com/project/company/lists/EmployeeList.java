@@ -2,16 +2,18 @@ package com.project.company.lists;
 
 import com.project.company.Employee;
 import com.project.company.windows.EmployeeDetails;
+import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Statement;
 
+@Component
 public class EmployeeList extends JList<Employee> implements MouseListener {
     private final JList<Employee> employeeList;
     private final EmployeeListModel listModel;
-    private final Statement statement;
+    private final transient Statement statement;
 
     public EmployeeList(EmployeeListModel listModel, Statement statement){
         this.listModel = listModel;
@@ -27,7 +29,7 @@ public class EmployeeList extends JList<Employee> implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() % 2 == 0) {
-            EmployeeDetails employeeDetails = new EmployeeDetails(listModel, statement, employeeList.getSelectedIndex());
+            new EmployeeDetails(listModel, this, statement);
         }
     }
 
