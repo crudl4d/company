@@ -1,5 +1,10 @@
 package com.project.company.windows;
 
+import com.project.company.Employee;
+import com.project.company.lists.EmployeeList;
+import com.project.company.lists.EmployeeListModel;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +16,10 @@ import java.util.List;
 public class EditEmployeePopup implements ActionListener {
     JFrame editEmployee = new JFrame("Edit employee");
     Statement statement;
+    @Autowired
+    EmployeeListModel listModel;
+    @Autowired
+    JList<Employee> employeeList;
     List<JLabel> labels = Arrays.asList(
             new JLabel("ID: "),
             new JLabel("First name: "),
@@ -24,7 +33,7 @@ public class EditEmployeePopup implements ActionListener {
             new JLabel("Department's ID: ")
     );
     List<JTextField> textFields = Arrays.asList(
-            new JTextField("ID: "),
+            new JTextField(listModel.getEmployeeRepository().get(employeeList.getSelectedIndex()).getEmployee_id()),
             new JTextField("First name: "),
             new JTextField("Last name: "),
             new JTextField("Email: "),
@@ -37,9 +46,10 @@ public class EditEmployeePopup implements ActionListener {
     );
     JButton ok = new JButton("OK");
     JButton cancel = new JButton("Cancel");
-    public EditEmployeePopup(Statement statement, int index) {
+    public EditEmployeePopup(Statement statement, JList<Employee> employeeList) {
         this.statement = statement;
-        setup(statement, index);
+        this.employeeList = employeeList;
+        setup(statement, employeeList.getSelectedIndex());
         ok.setBounds(10,300,100,30);
         ok.addActionListener(this);
         editEmployee.add(ok);

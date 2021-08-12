@@ -1,7 +1,6 @@
 package com.project.company.lists;
 
 import com.project.company.Employee;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;

@@ -6,6 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.sql.SQLException;
+import java.util.Arrays;
 
 @SpringBootApplication
 @ComponentScan({"com.project.company"})
@@ -17,5 +18,6 @@ public class Main {
         builder.headless(false);
 
         ConfigurableApplicationContext context = builder.run(args);
+        //Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
     }
 }

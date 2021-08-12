@@ -1,23 +1,28 @@
 package com.project.company.lists;
 
+import com.project.company.ConnectionToDB;
 import com.project.company.Employee;
 import com.project.company.windows.EmployeeDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.core.io.ContextResource;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 @Component
 public class EmployeeList extends JList<Employee> implements MouseListener {
     private final JList<Employee> employeeList;
-    private final EmployeeListModel listModel;
     private final transient Statement statement;
+    private EmployeeDetails employeeDetails;
 
-    public EmployeeList(EmployeeListModel listModel, Statement statement){
-        this.listModel = listModel;
-        this.statement = statement;
+    public EmployeeList(EmployeeListModel listModel, ConnectionToDB connection) throws SQLException {
+        statement = connection.getConnection().createStatement();
         employeeList = new JList<>(listModel.getListModel());
         employeeList.addMouseListener(this);
     }
@@ -29,8 +34,14 @@ public class EmployeeList extends JList<Employee> implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() % 2 == 0) {
-            new EmployeeDetails(listModel, this, statement);
+            System.out.println(employeeDetails.getListModel().get(2));
+            employeeDetails.getEmpDetails().setVisible(true);
         }
+    }
+
+    @Autowired
+    public void setEmpDet(EmployeeDetails employeeDetails){
+        this.employeeDetails = employeeDetails;
     }
 
     @Override

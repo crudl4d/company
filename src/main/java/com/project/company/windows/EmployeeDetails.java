@@ -1,9 +1,12 @@
 package com.project.company.windows;
 
+import com.project.company.ConnectionToDB;
 import com.project.company.Employee;
 import com.project.company.lists.EmployeeList;
 import com.project.company.lists.EmployeeListModel;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -14,12 +17,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Component
 public class EmployeeDetails extends JFrame {
     private final JList<Employee> employeeList;
     private final EmployeeListModel listModel;
     private final transient Statement statement;
-    final JFrame empDetails = new JFrame("Employee details");
+    private final JFrame empDetails = new JFrame("Employee details");
+
     private final List<JLabel> details = Arrays.asList(
             new JLabel("ID: "),
             new JLabel("First name: "),
@@ -32,13 +37,15 @@ public class EmployeeDetails extends JFrame {
             new JLabel("Manager ID: "),
             new JLabel("Department's ID: ")
     );
-    public EmployeeDetails(EmployeeListModel listModel, EmployeeList employeeList, Statement statement) {
+
+    public EmployeeDetails(EmployeeListModel listModel, EmployeeList employeeList, ConnectionToDB connection) throws SQLException {
         this.listModel = listModel;
         this.employeeList = employeeList.getJList();
-        this.statement = statement;
+        statement = connection.getConnection().createStatement();
         setup();
 
     }
+
     private void setup(){
         if(employeeList.getSelectedIndex()==-1)
             return;
@@ -57,7 +64,6 @@ public class EmployeeDetails extends JFrame {
             empDetails.setLayout(null);
             empDetails.setBounds(100, 100, 300, 350);
             empDetails.setResizable(false);
-            empDetails.setVisible(true);
         } catch (
                 SQLException throwables) {
             throwables.printStackTrace();
