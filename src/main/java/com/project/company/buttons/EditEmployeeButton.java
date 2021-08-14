@@ -33,6 +33,6 @@ public class EditEmployeeButton extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-            new EditEmployeePopup(statement, employeeList, listModel);
+        new EditEmployeePopup(statement, employeeList, listModel);
     }
 }
