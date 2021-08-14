@@ -19,8 +19,9 @@ public class EmployeeListModel extends DefaultListModel<Employee> {
         ResultSet resultSet = statement.executeQuery("SELECT * FROM EMPLOYEES");
         while(resultSet.next()){
             Employee emp = new Employee(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getString(3), resultSet.getString(4),
-                    resultSet.getDate(6), resultSet.getString(7), resultSet.getInt(8));
+                    resultSet.getString(3), resultSet.getString(4), resultSet.getString(5),
+                    resultSet.getDate(6), resultSet.getString(7), resultSet.getInt(8),
+                    resultSet.getInt(9), resultSet.getInt(10), resultSet.getInt(11));
             listModel.addElement(emp);
             employeeRepository.add(emp);
         }

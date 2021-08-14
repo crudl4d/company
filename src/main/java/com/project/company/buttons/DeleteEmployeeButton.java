@@ -36,7 +36,7 @@ public class DeleteEmployeeButton extends JButton implements ActionListener {
             for (int i = list.getSelectedIndices().length; i > 0; i--) {
                 try {
                     statement.executeQuery("DELETE FROM employees WHERE employee_id=" +
-                            listModel.getEmployeeRepository().get(list.getSelectedIndex()).getEmployee_id());
+                            listModel.getEmployeeRepository().get(list.getSelectedIndex()).getEmployeeId());
                     listModel.getEmployeeRepository().remove(list.getSelectedIndex());
                     listModel.getListModel().remove(list.getSelectedIndex());
                 } catch (SQLException throwables) {

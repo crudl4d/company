@@ -1,13 +1,7 @@
 package com.project.company.windows;
 
-import com.project.company.ConnectionToDB;
 import com.project.company.Employee;
-import com.project.company.lists.EmployeeList;
 import com.project.company.lists.EmployeeListModel;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.sql.ResultSet;
@@ -17,8 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Component
 public class EmployeeDetails extends JFrame {
     private final JList<Employee> employeeList;
     private final EmployeeListModel listModel;
@@ -38,18 +30,24 @@ public class EmployeeDetails extends JFrame {
             new JLabel("Department's ID: ")
     );
 
-    public EmployeeDetails(EmployeeListModel listModel, EmployeeList employeeList, ConnectionToDB connection) throws SQLException {
+    public EmployeeDetails(JList<Employee> employeeList, EmployeeListModel listModel, Statement statement) throws SQLException {
+        this.employeeList = employeeList;
         this.listModel = listModel;
-        this.employeeList = employeeList.getJList();
-        statement = connection.getConnection().createStatement();
+        this.statement = statement;
+        empDetails.setBounds(100,100,400,600);
+        empDetails.setVisible(true);
         setup();
 
     }
 
     private void setup(){
+        for(int i = 0; i < details.size(); i++){
+            details.get(i).setBounds(10,i * 30,100,20);
+            empDetails.add(details.get(i));
+        }
         if(employeeList.getSelectedIndex()==-1)
             return;
-        var empId = listModel.getEmployeeRepository().get(employeeList.getSelectedIndex()).getEmployee_id();
+        var empId = listModel.getEmployeeRepository().get(employeeList.getSelectedIndex()).getEmployeeId();
         try {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employees WHERE employee_id = " + empId);
             resultSet.next();

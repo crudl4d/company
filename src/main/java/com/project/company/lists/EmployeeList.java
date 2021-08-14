@@ -3,6 +3,7 @@ package com.project.company.lists;
 import com.project.company.ConnectionToDB;
 import com.project.company.Employee;
 import com.project.company.windows.EmployeeDetails;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
@@ -18,10 +19,11 @@ import java.sql.Statement;
 @Component
 public class EmployeeList extends JList<Employee> implements MouseListener {
     private final JList<Employee> employeeList;
+    private final EmployeeListModel listModel;
     private final transient Statement statement;
-    private EmployeeDetails employeeDetails;
 
     public EmployeeList(EmployeeListModel listModel, ConnectionToDB connection) throws SQLException {
+        this.listModel = listModel;
         statement = connection.getConnection().createStatement();
         employeeList = new JList<>(listModel.getListModel());
         employeeList.addMouseListener(this);
@@ -31,17 +33,12 @@ public class EmployeeList extends JList<Employee> implements MouseListener {
         return this.employeeList;
     }
 
+    @SneakyThrows
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() % 2 == 0) {
-            System.out.println(employeeDetails.getListModel().get(2));
-            employeeDetails.getEmpDetails().setVisible(true);
+            new EmployeeDetails(employeeList, listModel, statement);
         }
-    }
-
-    @Autowired
-    public void setEmpDet(EmployeeDetails employeeDetails){
-        this.employeeDetails = employeeDetails;
     }
 
     @Override
